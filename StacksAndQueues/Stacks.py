@@ -70,8 +70,6 @@ class StackMin:
             self.min = minVal
             self.next = next
 
-    self.top = None
-
     def __init__(self):
         self.top = None
 
