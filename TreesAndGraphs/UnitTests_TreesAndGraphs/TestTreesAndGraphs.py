@@ -8,7 +8,9 @@ class TestTreesAndGraphsQuestions(unittest.TestCase):
     """ Class for unit test methods """
 
     def test_AreNodesConnected(self):
-        """ Test AreNodesConnected """
+        """ Test AreNodesConnected 
+        :rtype: object
+        """
         nodesInGraph = []
         for i in range(1, 10):
             nodesInGraph.append(GraphNode(i))

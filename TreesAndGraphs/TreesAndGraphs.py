@@ -31,6 +31,9 @@ class GraphNode:
     def clearVisited(self):
         self.visited = False
 
+    def getVisited(self):
+        return visited
+
     def clearAdjacent(self):
         self.adjacentNodes = []
 
@@ -57,6 +60,9 @@ class DirectedGraph:
         for node in self.nodes:
             node.clearVisited()
 
+    def getNodes(self):
+        return self.nodes
+
 class TreesAndGraphsQuestions:
     """
     This class is basically just a namespace
@@ -69,15 +75,19 @@ class TreesAndGraphsQuestions:
         :param find:
         :return:
         """
-        curr.setVisited()
         if curr.name == find.name:
             return True
 
-        for node in curr.adjacentNodes:
-            if node.visited is False and TreesAndGraphsQuestions.AreNodesConnected(node, find):
-                return True
+        curr.setVisited(True)
+        for next in curr.adjacentNodes:
+            if next.getVisited() == False:
+                if TreesAndGraphsQuestions.AreNodesConnected(next, find):
+                    return True
 
         return False
+
+
+
 
     @staticmethod
     def ArrayToBST(arry: list):
@@ -88,17 +98,6 @@ class TreesAndGraphsQuestions:
         :param arry: The array (increasing order) with unique integer elements
         :return: The BST of minimal possible size
         """
-        if len(arry) == 0:
-            return None
-
-        mid = len(arry) / 2
-        node = BSTNode(arry[mid])
-        if (mid - 1) >= 0:
-            node.left = ArrayToBST(arry[0:mid])
-        if (mid + 1) < len(arry):
-            node.right = Array[(mid+1):]
-
-        return node
 
     @staticmethod
     def BSTToDepthList(node: BSTNode, depth: int, arry: list):
@@ -111,21 +110,5 @@ class TreesAndGraphsQuestions:
         :param arry: The array that contains all the linked lists. Element at index zero is associated with linked list
                      of depth 0 nodes, index one with depth 1 nodes and so on.
         """
-        if node is None:
-            return
-
-        LinkedListNode llNode = LinkedListNode(node.value)
-
-        if len(arry) == depth:
-            arry.append(llNode)
-        else:
-            tempNode = arry[depth]
-            while tempNode.next is not None:
-                tempNode = tempNode.next
-
-            tempNode.next = llNode
-
-        BSTToDepthList(node.left, (depth + 1))
-        BSTToDepthList(node.right, (depth + 1))
 
 
