@@ -32,7 +32,7 @@ class GraphNode:
         self.visited = False
 
     def getVisited(self):
-        return visited
+        return self.visited
 
     def clearAdjacent(self):
         self.adjacentNodes = []
@@ -78,7 +78,7 @@ class TreesAndGraphsQuestions:
         if curr.name == find.name:
             return True
 
-        curr.setVisited(True)
+        curr.setVisited()
         for next in curr.adjacentNodes:
             if next.getVisited() == False:
                 if TreesAndGraphsQuestions.AreNodesConnected(next, find):
