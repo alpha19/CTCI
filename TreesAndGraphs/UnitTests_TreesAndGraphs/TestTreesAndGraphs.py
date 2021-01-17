@@ -130,5 +130,16 @@ class TestTreesAndGraphsQuestions(unittest.TestCase):
         self.assertTrue(TreesAndGraphsQuestions.AreNodesConnected(nodesInGraph[3], nodesInGraph[2]))
         graph.clearVisited()
 
+    def test_ArryToBSTWithMinimalHeight(self):
+        arry = [1, 2, 3]
+        node = TreesAndGraphsQuestions.ArrayToBST(arry)
+
+        self.assertEquals(node.getHeight(), 2)
+        self.assertTrue(TreeAndGraphsHelpers.isBST(node))
+
+        # TODO: More test cases!!!
+
+
+
 
 

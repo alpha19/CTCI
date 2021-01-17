@@ -10,6 +10,7 @@ from ArraysAndStrings.UnitTests_ArraysAndStrings.TestStringQuestions import Test
 from LinkedLists.UnitTests_LinkedLists.TestLinkedListQuestions import TestLinkedListQuestions
 from StacksAndQueues.UnitTests_StacksAndQueues.UnitTests_Stacks import TestStackQuestions
 from TreesAndGraphs.UnitTests_TreesAndGraphs.TestTreesAndGraphs import TestTreesAndGraphsQuestions
+from BitManipulation.UnitTests_BitManipulation.TestBitManipulation import TestBitManipulationQuestions
 
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestStringQuestions)
@@ -17,6 +18,7 @@ if __name__ == '__main__':
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestLinkedListQuestions))
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestStackQuestions))
     suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestTreesAndGraphsQuestions))
+    suite.addTests(unittest.TestLoader().loadTestsFromTestCase(TestBitManipulationQuestions))
 
     unittest.TextTestRunner(verbosity=2).run(suite)
 

@@ -7,6 +7,22 @@ class BSTNode:
         self.left = None
         self.right = None
 
+    def getHeight(self) -> int:
+        if self.left == None and self.right == None:
+            return 1
+
+        leftH = rightH = 0
+        if self.left is not None:
+            leftH = self.left.getHeight()
+        if self.right is not None:
+            rightH = self.right.getHeight()
+
+        if leftH > rightH:
+            return leftH + 1
+
+        return rightH + 1
+
+
 class LinkedListNode:
     def __init__(self, value):
         self.value = value
@@ -63,6 +79,27 @@ class DirectedGraph:
     def getNodes(self):
         return self.nodes
 
+class TreeAndGraphsHelpers:
+    @staticmethod
+    def isBST(node: GraphNode) -> bool:
+        if node is None:
+            return False
+        if node.left is None and node.right is None:
+            return True
+
+        isLeftBST = isRightBST = True
+        if node.left is not None:
+            if node.value < node.left.value:
+                return False
+            isLeftBST = TreeAndGraphsHelpers.isBST(node.left)
+        if node.right is not None:
+            if node.value >= node.right.value:
+                return False
+            isRightBST = TreeAndGraphsHelpers.isBST(node.right)
+
+        return isRightBST and isLeftBST
+
+
 class TreesAndGraphsQuestions:
     """
     This class is basically just a namespace
@@ -87,17 +124,40 @@ class TreesAndGraphsQuestions:
         return False
 
 
+    @staticmethod
+    def ArrayToBSTRecurse(arry: list, left: int, right: int) -> BSTNode:
+        """
+        Helper for ArrayToBST method. This recurses down and builds the BST
+        :param arry:
+        :param left:
+        :param right:
+        :return: BSTNode the current root node
+        """
+        if left == right:
+            return BSTNode(arry[left])
+        elif left > right:
+            return None
 
+        center = int((right - left) / 2)
+        root = BSTNode(arry[center])
+        root.left = TreesAndGraphsQuestions.ArrayToBSTRecurse(arry, left, center - 1)
+        root.right = TreesAndGraphsQuestions.ArrayToBSTRecurse(arry, center + 1, right)
+
+        return root
 
     @staticmethod
     def ArrayToBST(arry: list):
         """
-        Given an increasing order array with unique interger elements, write
+        Given an increasing order array with unique integer elements, write
         an algorithm to create a BST with minimal height
 
         :param arry: The array (increasing order) with unique integer elements
         :return: The BST of minimal possible size
         """
+        if arry is None:
+            return None
+
+        return TreesAndGraphsQuestions.ArrayToBSTRecurse(arry, 0, len(arry) -  1)
 
     @staticmethod
     def BSTToDepthList(node: BSTNode, depth: int, arry: list):
