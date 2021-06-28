@@ -117,14 +117,14 @@ class TreeAndGraphsHelpers:
         queue.append(node)
 
         while len(queue) > 0:
-            depthLength = len(queue):
+            depthLength = len(queue)
 
             for _ in range(depthLength):
                 curr = queue.pop(0)
                 result.append(curr)
                 for n in node.adjacentNodes:
                     if n.getVisited() == False:
-                        n.setVisited() = True
+                        n.setVisited()
                         queue.append(n)
         return result
 
