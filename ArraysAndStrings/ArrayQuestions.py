@@ -8,4 +8,4 @@ class ArrayQuestions:
 
     @staticmethod
     def QuestionOne(self):
-        # Not sure what to do yet
+        pass
