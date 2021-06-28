@@ -138,6 +138,106 @@ class TestTreesAndGraphsQuestions(unittest.TestCase):
         self.assertTrue(TreeAndGraphsHelpers.isBST(node))
 
         # TODO: More test cases!!!
+        arry = [1, 2, 3, 4, 5]
+        node = TreesAndGraphsQuestions.ArrayToBST(arry)
+
+        self.assertEquals(node.getHeight(), 3)
+        self.assertTrue(TreeAndGraphsHelpers.isBST(node))
+
+        arry = [5, 7, 8, 12, 17, 19, 20]
+        node = TreesAndGraphsQuestions.ArrayToBST(arry)
+
+        self.assertEquals(node.getHeight(), 3)
+        self.assertTrue(TreeAndGraphsHelpers.isBST(node))
+
+        arry = [6, 8, 9, 10, 14, 16]
+        node = TreesAndGraphsQuestions.ArrayToBST(arry)
+
+        self.assertEquals(node.getHeight(), 3)
+        self.assertTrue(TreeAndGraphsHelpers.isBST(node))
+
+    def test_BSTToDepthList(self):
+        arry = [1, 2, 3]
+        node = TreesAndGraphsQuestions.ArrayToBST(arry)
+
+        depthList = TreesAndGraphsQuestions.BSTToDepthList(node)
+
+        self.assertEquals(len(depthList), 2)
+        self.assertEquals(depthList[0].value.value, 2)
+        self.assertEquals(depthList[1].value.value, 1)
+        self.assertEquals(node.getHeight(), 2)
+
+    def test_isBalanced(self):
+        # Brute force the node creation
+        node1 = BSTNode(1)
+        node2 = BSTNode(2)
+        node3 = BSTNode(3)
+        node4 = BSTNode(4)
+        node5 = BSTNode(5)
+        node6 = BSTNode(6)
+        node7 = BSTNode(7)
+
+        node4.left = node2
+        node4.right = node6
+
+        node2.left = node1
+        node2.right = node3
+
+        node6.left = node5
+        node6.right = node7
+
+        self.assertTrue(TreesAndGraphsQuestions.isBalanced(node4))
+
+        node6.left = node4
+
+        node4.right = node5
+        node4.left = node2
+
+        node2.left = node1
+        node2.right = node3
+
+        self.assertFalse(TreesAndGraphsQuestions.isBalanced(node6))
+
+    def test_nextNode(self):
+        node3 = BSTNode(3)
+        node5 = BSTNode(5)
+        node7 = BSTNode(7)
+        node10 = BSTNode(10)
+        node12 = BSTNode(12)
+        node15 = BSTNode(15)
+        node17 = BSTNode(17)
+        node20 = BSTNode(20)
+
+        node10.left = node5
+        node10.right = node15
+
+        node5.left = node3
+        node5.right = node7
+        node5.parent = node10
+
+        node15.left = node12
+        node15.right = node17
+        node15.parent = node10
+
+        node3.parent = node5
+
+        node7.parent = node5
+
+        node12.parent = node15
+
+        node17.right = node20
+        node17.parent = node15
+
+        node20.parent = node17
+
+        self.assertEquals(TreesAndGraphsQuestions.nextNode(node3), node5)
+        self.assertEquals(TreesAndGraphsQuestions.nextNode(node10), node12)
+        self.assertEquals(TreesAndGraphsQuestions.nextNode(node20), None)
+        self.assertEquals(TreesAndGraphsQuestions.nextNode(node7), node10)
+
+
+
+
 
 
 
