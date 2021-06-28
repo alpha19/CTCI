@@ -80,13 +80,13 @@ class StringQuestions:
         urlList = list(url)
         offset = 0
         for index in range(0, (size-1)):
-            if urlList[index] is ' ':
+            if urlList[index] == ' ':
                 offset += 2
 
         # With the knowledge of the needed offset, loop backwards through array
         for index in range((size-1), 0, -1):
             # When a space is found
-            if urlList[index] is ' ':
+            if urlList[index] == ' ':
                 urlList[index + offset] = '0'
                 urlList[index + offset - 1] = '2'
                 urlList[index + offset - 2] = '%'
@@ -116,15 +116,15 @@ class StringQuestions:
                     charDict[c] += 1
                 except KeyError:
                     charDict[c] = 1
-            elif c is " ":
+            elif c == " ":
                 continue
             else:
                 raise AttributeError
 
         foundCenterChar = False
         for value in charDict.values():
-            if value % 2 is not 0:
-                if count % 2 is not 0:
+            if value % 2 != 0:
+                if count % 2 != 0:
                     # An odd count is allowed one odd number of characters
                     if foundCenterChar is False:
                         foundCenterChar = True
